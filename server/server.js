@@ -1,7 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const SpotifyWebApi = require("spotify-web-api-node");
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+
+
+app.post('/refresh-token', (req , res) => {
+  
+
+})
 
 app.post("/login", (req, res) => {
   const code = req.body.code
@@ -21,8 +30,9 @@ app.post("/login", (req, res) => {
       })
     })
     .catch(err => {
+      console.log("server err", err);
       res.sendStatus(400)
     })
 })
 
-// app.listen(3001)
+app.listen(3001)
